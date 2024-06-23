@@ -17,10 +17,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import anasayfa.views
+import ogrenci.views
+import ogretmen.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', anasayfa.views.anasayfafen, name="home"),
     path('anasayfa/', anasayfa.views.anasayfaf),
-    path('', anasayfa.views.anasayfaf)
+    path('', anasayfa.views.anasayfaf),
+    path('ogrenci/', ogrenci.views.ogrencif,name="ogrenciler"),
+    # path('ogretmen/<int:x>',ogretmen.views.ogretmenf)
+    path('ogretmen/',ogretmen.views.ogretmenf),
+    path('ogretmen/ekle', ogretmen.views.ekle),
+    path('ogretmenler/', ogretmen.views.listele,name="ogretmenlistele"),
+    # path('ogretmen/sil/<int:id>', ogrenci.views.sil,name="ogretmensil"),
+    path('ogretmen/detay/<int:id>', ogretmen.views.ogretmendetay,name="ogretmendetay"),
+    
+    path('ogrenci/ekle', ogrenci.views.ekle),
+    path('ogrenciler', ogrenci.views.listele,name="ogrenciliste"),
+    path('ogrenciler/sil/<int:id>', ogrenci.views.sil,name="ogrencisil"),
+    path('ogretmenler/sil/<int:id>', ogretmen.views.sil, name='CRUD_sil'),
+    path('ogretmenler/guncelle/<int:id>', ogretmen.views.guncelle, name='CRUD'),
+
+    path('ogrenciler/detay/<int:id>', ogrenci.views.detay,name="ogrencidetay"),
+
 ]
